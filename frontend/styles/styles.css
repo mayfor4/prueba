@@ -1,0 +1,931 @@
+/* Contenedor del logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Asegura que el logo ocupe el espacio necesario */
+}
+
+.logo {
+  width: 50px; /* Tamaño del logo reducido para móviles */
+  margin-right: 10px; /* Espacio reducido entre el logo y el menú */
+}
+
+/* Estilos para el menú de navegación */
+nav ul {
+  flex-wrap: wrap; /* Permite que el menú se ajuste en una sola línea o más si es necesario */
+}
+
+/* Estilos personalizados para los elementos del menú */
+.menu-item {
+  margin-right: 10px; /* Reduce espacio entre los elementos del menú */
+}
+
+.menu-link {
+  color: #f8f9fa; /* Color del texto del menú */
+  font-weight: 500; /* Un poco más de grosor para destacar */
+  padding: 8px 12px; /* Reduce padding para acercar más las opciones entre sí */
+  transition: all 0.3s ease; /* Transición suave para los efectos */
+  position: relative; /* Para posicionar el pseudo-elemento decorativo */
+}
+
+/* Efecto al pasar el ratón sobre las opciones del menú */
+.menu-link:hover {
+  color: #ffc107; /* Cambia el color del texto al pasar el ratón */
+  text-decoration: none; /* Elimina la subrayado por defecto */
+}
+
+.menu-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffc107; /* Color del borde inferior decorativo */
+  transition: width 0.3s ease;
+}
+
+.menu-link:hover::after {
+  width: 100%; /* Expande el borde inferior al pasar el ratón */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  header {
+      padding: 8px; /* Reduce el padding en pantallas pequeñas */
+  }
+
+  .menu-item {
+      margin-right: 8px; /* Reduce el margen entre los elementos en móviles */
+  }
+
+  .menu-link {
+      padding: 6px 8px; /* Reduce el padding en móviles */
+  }
+}
+
+
+  /* Contenedor del título principal y la frase */
+  .home-title-container {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 0 10px; /* Ajuste para pantallas pequeñas */
+  }
+  
+  .main-title {
+    font-size: 4.5em; /* Tamaño del título principal */
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+  }
+  
+  .phrase-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+    margin-top: 10px;
+  }
+  
+  .header-phrase {
+    font-size: 2.0em; /* Tamaño de la frase */
+    font-family: 'Times New Roman', Times, serif;
+    margin-right: 20px;
+    text-align: center; /* Centrado en pantallas pequeñas */
+  }
+  
+  .big-logo {
+    width: 410px; /* Tamaño de la imagen del logo */
+    height: auto;
+    margin-top: 10px; /* Separación en pantallas pequeñas */
+  }
+  
+ /* Contenedor del subtítulo e imagen inferior */
+.home-content {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 20px; /* Margen desde el borde izquierdo */
+  margin-right: 20px; /* Margen desde el borde derecho */
+}
+
+  
+  .home-image {
+    width: 600px; /* Tamaño de la imagen izquierda */
+    height: auto;
+    margin-right: 20px;
+    margin-bottom: 20px; /* Ajuste en pantallas pequeñas */
+  }
+  
+  .home-text h2 {
+    font-size: 1.8em; /* Tamaño del subtítulo */
+    margin: 0;
+    color: #711D1D; /* Letras rojo-café */
+  }
+  
+  .home-text p {
+    font-size: 1.2em; /* Tamaño del texto descriptivo */
+    font-family: 'Times New Roman', Times, serif;
+    color: #000; /* Texto negro */
+    margin-top: 10px;
+    text-align: justify; /* Justificar texto */
+    margin: 20px 0; /* Ajuste de margen */
+  }
+  
+  /* Carrusel */
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 40px auto; /* Centrado */
+  }
+  
+  .carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    flex-shrink: 0;
+  }
+  
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .carousel-control.prev {
+    left: 10px;
+  }
+  
+  .carousel-control.next {
+    right: 10px;
+  }
+  
+  /* Sección final */
+  .final-section {
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  .final-image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .final-text {
+    font-size: 1.2em;
+    font-family: 'Times New Roman', Times, serif;
+    color: #000; /* Texto negro */
+    margin: 20px;
+  }
+  
+  /* Media Queries para la Responsividad */
+  
+  /* Estilos para pantallas grandes (escritorios) */
+  @media (min-width: 1024px) {
+    .main-title {
+        font-size: 4.5em;
+    }
+    .header-phrase {
+        font-size: 2.0em;
+    }
+    .home-image {
+        width: 600px;
+    }
+    .home-text h2 {
+        font-size: 1.8em;
+    }
+  }
+  
+  /* Estilos para pantallas medianas (tabletas) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .main-title {
+        font-size: 3.5em;
+    }
+    .header-phrase {
+        font-size: 1.8em;
+    }
+    .home-image {
+        width: 400px;
+    }
+    .home-text h2 {
+        font-size: 1.6em;
+    }
+  }
+  
+  /* Estilos para pantallas pequeñas (móviles) */
+  @media (max-width: 767px) {
+    .main-title {
+        font-size: 2.5em;
+    }
+    .header-phrase {
+        font-size: 1.5em;
+        margin-right: 0; /* Sin margen en pantallas pequeñas */
+    }
+    .big-logo {
+        width: 200px;
+    }
+    .home-content {
+        flex-direction: column;
+        margin: 10px;
+    }
+    .home-image {
+        width: 100%;
+        margin-right: 0;
+    }
+    .home-text h2 {
+        font-size: 1.4em;
+        text-align: center;
+    }
+    .home-text p {
+        font-size: 1em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .carousel-control {
+        padding: 5px;
+    }
+  }
+  
+  
+  /* Estilo para el título de las páginas de visualización, adición y edición */
+  h1 {
+    color: #711D1D; /* Color rojo-café */
+    font-size: 2em; /* Tamaño del texto del título */
+    margin-bottom: 20px;
+    text-align: center; /* Centrar el título */
+  }
+  
+  /* Estilo para botones de agregar, eliminar y editar */
+  button {
+    background-color: #F2BD07; /* Color dorado */
+    color: #711D1D; /* Texto en color rojo-café */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+  }
+  
+  button:hover {
+    background-color: #d6a800; /* Color dorado más oscuro en hover */
+  }
+  
+  /* Estilo para el panel de cotización */
+  .quotation-panel {
+    border: 1px solid #711D1D; /* Borde rojo-café */
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 10px 0;
+  }
+  
+  .quotation-panel h2 {
+    font-size: 1.5em; /* Tamaño del texto del título */
+    color: #711D1D; /* Color rojo-café */
+  }
+  
+  /* Estilo para los checkboxes */
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+  }
+  
+  .checkbox-box {
+    border: 2px solid #F2BD07; /* Bordes dorados */
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px; /* Ajusta el ancho según sea necesario */
+    background-color: #F5F5F5; /* Fondo ligeramente gris */
+  }
+  
+  .checkbox-box h3 {
+    font-size: 20px; /* Título más grande */
+    color: #711D1D;
+    margin-bottom: 10px;
+  }
+  
+  .checkbox-box label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px; /* Tamaño de fuente para las opciones */
+    color: #333;
+  }
+  
+  .checkbox-box input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .checkbox-group .checkbox-box {
+    flex: 1;
+    min-width: 200px; /* Asegura que el recuadro tenga un tamaño mínimo */
+  }
+  
+  /* Estilo para las tablas de visualización */
+  .table-container {
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #711D1D; /* Color rojo-café para el encabezado de la tabla */
+    color: #F2BD07; /* Letras doradas */
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  table tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Estilo para formularios en páginas de adición y edición */
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #711D1D; /* Color rojo-café */
+  }
+  
+  form input, form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  form button {
+    background-color: #F2BD07; /* Color dorado */
+    color: #711D1D; /* Texto en color rojo-café */
+  }
+  
+  /* Estilo para las páginas de adición y edición */
+  .add-page, .edit-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .add-page h1, .edit-page h1 {
+    color: #711D1D; /* Color rojo-café */
+  }
+  
+  /* Estilo para las páginas de visualización */
+  .visualization-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .visualization-page h1 {
+    color: #711D1D; /* Color rojo-café */
+  }
+  
+  /* Estilos para la página de contacto */
+  .contacto-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .contacto-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #711D1D; /* Color rojo-café */
+  }
+  
+  .contacto-container p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333; /* Color del texto */
+  }
+  
+  .contacto-container .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .contacto-container .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+  }
+  
+  .contacto-container .social-icons a:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+  
+  .contacto-container .social-icons img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  
+  /* Estilos para la página de login */
+  .login-main {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    margin: 50px auto;
+  }
+  
+  .login-main h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #711D1D; /* Color rojo-café */
+  }
+  
+  .login-main .login-logo {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  #login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  #login-form label {
+    font-size: 16px;
+    text-align: left;
+    color: #711D1D; /* Color rojo-café */
+  }
+  
+  #login-form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  #login-form button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #711D1D; /* Color rojo-café */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #login-form button:hover {
+    background-color: #555; /* Color más oscuro en hover */
+  }
+  
+  /* Estilos para el panel de admin */
+  .admin-panel {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Admin Panel Page */
+  .admin-panel {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .admin-panel h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: black; /* Asegura que el texto del título sea negro */
+  }
+  
+  .admin-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .admin-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  
+  .admin-button img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  .admin-button span {
+    font-size: 16px;
+    color: black; /* Asegura que el texto del título sea negro */
+    text-align: center;
+  }
+  
+  .admin-button:hover {
+    transform: scale(1.05);
+    background-color: #ddd;
+  }
+  
+  /* Estilos del carrusel */
+  .carousel {
+    position: relative;
+    margin: 40px auto;
+    overflow: hidden;
+    width: 90%; /* Ajusta el ancho del carrusel */
+    max-width: 700px; /* Tamaño máximo del carrusel */
+  }
+  
+  .carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    flex-shrink: 0; /* Evita que las imágenes se reduzcan de tamaño */
+  }
+  
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 100;
+  }
+  
+  .carousel-control.prev {
+    left: 10px;
+  }
+  
+  .carousel-control.next {
+    right: 10px;
+  }
+  
+  /* Estilos de la imagen final centrada y texto */
+  .final-section {
+    text-align: center;
+    margin: 40px auto;
+  }
+  
+  .final-image {
+    width: 150px; /* Tamaño de la imagen en marco circular */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .final-text {
+    font-size: 1.2em; /* Tamaño del texto final */
+    font-family:'Times New Roman', Times, serif;
+    color: #000; /* Color del texto */
+    margin-top: 20px;
+    text-align: justify; /* Justificar texto */
+    width: 80%; /* Ajustar ancho del texto */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Conocenos Page */
+.conocenos-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.conocenos-container h1 {
+  font-size: 32px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 20px;
+  color: #711D1D;
+}
+
+.conocenos-container p {
+  font-size: 17px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 10px; /* Ajuste de margen */
+  color: #711D1D;
+  
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Espacio uniforme */
+  gap: 20px;
+}
+
+.service {
+  text-align: center;
+}
+
+.service img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.service p {
+  color: #711D1D;
+ 
+}
+
+.features-container {
+  background-color: #711D1D;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.feature {
+  background-color: white;
+  border: 1px solid #F2BD07;
+  padding: 10px;
+  width: 250px;
+  text-align: left; /* Cambio de justificación */
+}
+
+.feature h3 {
+  color: #F2BD07;
+  text-align: center;
+  font-size: 18px;
+}
+*/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+
+  
+  /* Tableware Panel Page */
+  .tableware-panel {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .tableware-panel h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .tableware-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .tableware-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  
+  .tableware-button img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  .tableware-button span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .tableware-button:hover {
+    transform: scale(1.05);
+    background-color: #e0e0e0;
+  }
+  
+  /* Furniture Panel Page */
+  .furniture-panel {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .furniture-panel h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .furniture-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .furniture-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  
+  .furniture-button img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  .furniture-button span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .furniture-button:hover {
+    transform: scale(1.05);
+    background-color: #e0e0e0;
+  }
+  
+  /* Extras Panel Page */
+  .extras-panel {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .extras-panel h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .extras-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .extras-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  
+  .extras-button img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  .extras-button span {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .extras-button:hover {
+    transform: scale(1.05);
+    background-color: #e0e0e0;
+  }
+  
+  .cotizacion-main h1 {
+    text-align: center;
+    color: #711D1D;
+    margin-bottom: 20px;
+    }
+    
+    form {
+    display: flex;
+    flex-direction: column;
+    }
+    
+    form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #711D1D;
+    }
+    
+    form input[type="text"],
+    form input[type="number"],
+    form select {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    }
+    
+    .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    }
+    
+    .checkbox-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #711D1D;
+    padding: 10px;
+    border-radius: 4px;
+    }
+    
+    .checkbox-wrapper label {
+    color: #711D1D;
+    }
+    
+    .checkbox-wrapper input[type="checkbox"] {
+    margin-right: 5px;
+    }
+    
+    .checkbox-wrapper img {
+    margin-top: 5px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    }
+    
+    form button[type="submit"] {
+    background-color: #F2BD07;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    }
+    
+    form button[type="submit"]
+    {
+    background-color: #e0a906;
+    }
+  
+  
+  /* Centrar el contenedor del calendario */
+  .calendar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Espaciado entre el calendario y la tabla */
+  }

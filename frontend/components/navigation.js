@@ -1,5 +1,5 @@
-/*import loadCotizacionPage from '../pages/cotizacion.js';
-import loadContactoPage from '../pages/contacto.js';
+/*
+
 import loadLoginPage from '../pages/login.js';
 import loadConocenosPage from '../pages/conocenos.js';
 import loadHomePage from '../pages/home.js';
@@ -13,6 +13,9 @@ import loadExtrasPanel from '../pages/extrasPanel.js'; // Importar panel de adic
 import { loadExtrasRoutes } from '../pages/extrasPanel.js'; */
 
 import loadHomePage from '../pages/home.js';
+import loadCotizacionPage from '../pages/cotizacion.js';
+import loadContactoPage from '../pages/contacto.js';
+import loadConocenosPage from '../pages/conocenos.js';
 
 function isAuthenticated() {
     return !!localStorage.getItem('authToken');
@@ -21,10 +24,10 @@ function isAuthenticated() {
 export function navigate(hash) {
     const routes = {
         '#inicio':loadHomePage,
-        /*'#solicitar-cotizacion': loadCotizacionPage,
+        '#solicitar-cotizacion': loadCotizacionPage,
         '#contacto': loadContactoPage,
         '#conocenos': loadConocenosPage,
-        '#admin': isAuthenticated() ? loadAdminPanel : loadLoginPage,
+        /*'#admin': isAuthenticated() ? loadAdminPanel : loadLoginPage,
         '#mobiliario': isAuthenticated() ? loadFurniturePanel : loadLoginPage,
         '#loza-cristaleria': isAuthenticated() ? loadTablewarePanel : loadLoginPage, 
         '#extras': isAuthenticated() ? loadExtrasPanel : loadLoginPage,

@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = 5000;
-
+app.use(express.json());
 
 const insertRoutes = require('./routes/insertRoutes');
 const updateRoutes = require('./routes/updateRoutes');

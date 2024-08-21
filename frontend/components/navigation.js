@@ -1,9 +1,8 @@
 /*
 
 
-import loadConocenosPage from '../pages/conocenos.js';
-import loadHomePage from '../pages/home.js';
-import loadAdminPanel from '../pages/adminPanel.js'; 
+
+
 import { loadAdminRoutes } from '../pages/adminPanel.js';
 import loadFurniturePanel from '../pages/furniturePanel.js';
 import { loadFurnitureRoutes } from '../pages/furniturePanel.js';
@@ -17,6 +16,7 @@ import loadCotizacionPage from '../pages/cotizacion.js';
 import loadContactoPage from '../pages/contacto.js';
 import loadConocenosPage from '../pages/conocenos.js';
 import loadLoginPage from '../pages/login.js';
+import loadAdminPanel from '../pages/adminPanel.js'; 
 
 function isAuthenticated() {
     return !!localStorage.getItem('authToken');

@@ -1,5 +1,5 @@
 // adminPanel.js 
-/*
+
 import loadEventsPage from './events.js';
 import loadProvidersPage from './providers.js';
 import loadPlacesPage from './places.js';
@@ -34,12 +34,9 @@ import loadEditServicePage from './editService.js';
 import loadEditFoodPage from './editFood.js';
 import loadEditCenterpiecePage from './editCenterpiece.js';
 import loadEditDecorationPage from './editDecoration.js';
-*/
 
-import { navigate } from '../components/navigation.js';
-import loadMusicPage from './music.js';
-import loadEditMusicPage from './editMusic.js';
-import loadAddMusicPage from './addMusic.js';
+
+
 function createAdminPanel() {
     const main = document.createElement('main');
     main.classList.add('admin-panel');
@@ -108,12 +105,39 @@ function createAdminPanel() {
     return main;
 }
 
-
 function handleNavigation(name) {
     const routes = {
-       
+        'Eventos': '#/eventos',
+        'Proveedores': '#/proveedores',
+        'Lugares': '#/lugares',
         'Musica': '#/musica',
-      
+        'Servicios': '#/servicios',
+        'Comida': '#/comida',
+        'Centros de mesa': '#/centrosdemesa',
+        'Mobiliario': '#/mobiliario',
+        'Decoración': '#/decoracion',
+        'Loza y cristalería': '#/loza',
+        'Adicionales': '#/adicionales',
+        'Agregar Proveedor': '#/agregar-proveedor',
+        'Editar Proveedor': '#/modificar-proveedor/:id',
+        'Editar Musica':'#/modificar-musica/:id',
+        'Agregar Musica':'#/agregar-musica',
+        //ADD
+        'Agregar Evento':'#/agregar-evento',
+        'Agregar lugar':'#/agregar-lugar',
+        'Agregar Servicio':'#/agregar-servicio',
+        'Agregar Comida':'#/agregar-comida',
+        'Agregar Centros de mesa':'#/agregar-centrosdemesa',
+        'Agregar Mobiliario':'#/agregar-mobiliario',
+        
+
+        //edit
+        'Editar Evento':'#/modificar-evento/:id',
+        'Editar lugar':'#/modificar-lugar/:id',
+        'Editar Servicio':'#/modificar-servicio/:id',
+        'Editar Comida':'#/modificar-comida/:id',
+        'Editar Centros de mesa':'#/modificar-centrosdemesa/:id',
+        'Editar Mobiliario':'#/modificar-mobiliario/:id',
     };
 
     const hash = routes[name];
@@ -125,11 +149,37 @@ function handleNavigation(name) {
 
 export function loadAdminRoutes() {
     return {
-        
+        '#/eventos': loadEventsPage,
+        '#/proveedores': loadProvidersPage,
+        '#/lugares': loadPlacesPage,
         '#/musica': loadMusicPage,
+        '#/servicios': loadServicesPage,
+        '#/comida': loadFoodPage,
+        '#/centrosdemesa': loadCenterpiecesPage,
+        '#/mobiliario': loadFurniturePanel,
+        '#/decoracion': loadDecorationPage,
+        '#/loza': loadTablewarePanel,
+        '#/adicionales': loadExtrasPanel,
+        '#/agregar-proveedor': loadAddProviderPage,
+       '#/modificar-proveedor/:id': loadEditProviderPage ,// Ruta dinámica
        '#/modificar-musica/:id':loadEditMusicPage,
        '#/agregar-musica':loadAddMusicPage,
-       
+       //add
+       '#/agregar-evento': loadAddEventPage,
+      '#/agregar-lugar': loadAddPlacePage,
+      '#/agregar-servicio': loadAddServicePage,
+      '#/agregar-comida': loadAddFoodPage,
+      '#/agregar-centrosdemesa': loadAddCenterpiecePage,
+      '#/agregar-decoracion': loadAddDecorationPage,
+      
+
+       //edit
+     '#/modificar-evento/:id': loadEditEventPage,
+     '#/modificar-lugar/:id': loadEditPlacePage,
+     '#/modificar-servicio/:id': loadEditServicePage,
+     '#/modificar-comida/:id': loadEditFoodPage,
+     '#/modificar-centrosdemesa/:id': loadEditCenterpiecePage,
+     '#/modificar-decoracion/:id': loadEditDecorationPage,
     
     };
 }

@@ -1,6 +1,6 @@
 /*
 
-import loadLoginPage from '../pages/login.js';
+
 import loadConocenosPage from '../pages/conocenos.js';
 import loadHomePage from '../pages/home.js';
 import loadAdminPanel from '../pages/adminPanel.js'; 
@@ -16,6 +16,7 @@ import loadHomePage from '../pages/home.js';
 import loadCotizacionPage from '../pages/cotizacion.js';
 import loadContactoPage from '../pages/contacto.js';
 import loadConocenosPage from '../pages/conocenos.js';
+import loadLoginPage from '../pages/login.js';
 
 function isAuthenticated() {
     return !!localStorage.getItem('authToken');
@@ -27,8 +28,8 @@ export function navigate(hash) {
         '#solicitar-cotizacion': loadCotizacionPage,
         '#contacto': loadContactoPage,
         '#conocenos': loadConocenosPage,
-        /*'#admin': isAuthenticated() ? loadAdminPanel : loadLoginPage,
-        '#mobiliario': isAuthenticated() ? loadFurniturePanel : loadLoginPage,
+        '#admin': isAuthenticated() ? loadAdminPanel : loadLoginPage,
+        /*'#mobiliario': isAuthenticated() ? loadFurniturePanel : loadLoginPage,
         '#loza-cristaleria': isAuthenticated() ? loadTablewarePanel : loadLoginPage, 
         '#extras': isAuthenticated() ? loadExtrasPanel : loadLoginPage,
         ...loadAdminRoutes(),

@@ -15,10 +15,11 @@ const insertRoutes = require('./routes/insertRoutes');
 const updateRoutes = require('./routes/updateRoutes');
 const deleteRoutes = require('./routes/deleteRoutes');
 const pdfRoutes = require('./routes/pdfRoutes');
-
+const authRoutes = require('./routes/authRoutes.js');
 
 
 // Rutas
+app.use('/api/auth', authRoutes);
 app.use('/insert', insertRoutes);
 app.use('/update', updateRoutes);
 app.use('/delete', deleteRoutes);

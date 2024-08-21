@@ -3,7 +3,7 @@
 
 
 
-import { loadAdminRoutes } from '../pages/adminPanel.js';
+
 import loadFurniturePanel from '../pages/furniturePanel.js';
 import { loadFurnitureRoutes } from '../pages/furniturePanel.js';
 import loadTablewarePanel from '../pages/tablewarePanel.js'; // Importar panel de loza y cristalería
@@ -17,6 +17,7 @@ import loadContactoPage from '../pages/contacto.js';
 import loadConocenosPage from '../pages/conocenos.js';
 import loadLoginPage from '../pages/login.js';
 import loadAdminPanel from '../pages/adminPanel.js'; 
+import { loadAdminRoutes } from '../pages/adminPanel.js';
 
 function isAuthenticated() {
     return !!localStorage.getItem('authToken');
@@ -29,6 +30,7 @@ export function navigate(hash) {
         '#contacto': loadContactoPage,
         '#conocenos': loadConocenosPage,
         '#admin': isAuthenticated() ? loadAdminPanel : loadLoginPage,
+        ...loadAdminRoutes(),
         /*'#mobiliario': isAuthenticated() ? loadFurniturePanel : loadLoginPage,
         '#loza-cristaleria': isAuthenticated() ? loadTablewarePanel : loadLoginPage, 
         '#extras': isAuthenticated() ? loadExtrasPanel : loadLoginPage,

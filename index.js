@@ -11,19 +11,18 @@ const app = express();
 const port = 5000;
 app.use(express.json());
 
-const insertRoutes = require('./routes/insertRoutes');
-const updateRoutes = require('./routes/updateRoutes');
-const deleteRoutes = require('./routes/deleteRoutes');
-const pdfRoutes = require('./routes/pdfRoutes');
+
+const musicRoutes = require('./routes/musicRoutes.js');
+
+
 const authRoutes = require('./routes/authRoutes.js');
 
 
 // Rutas
 app.use('/api/auth', authRoutes);
-app.use('/insert', insertRoutes);
-app.use('/update', updateRoutes);
-app.use('/delete', deleteRoutes);
-app.use('/pdf', pdfRoutes);
+
+app.use('/api', musicRoutes);
+
 
 
 // Configuración de middleware
@@ -36,11 +35,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname,  'index.html'));
 });
 
-//app.set('view engine', 'ejs');
-
-// Conectar a la base de datos SQLite
-/*const db = new sqlite3.Database("C:\\Users\\diego\\Documents\\Taven\\eventos.db\\cotizacion.db");
-app.locals.db = db;  // Hacer la base de datos accesible en los controladores*/
 
 
 

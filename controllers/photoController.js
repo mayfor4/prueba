@@ -1,44 +1,46 @@
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database("C:\\Users\\diego\\Documents\\ttaven\\EventosTaven (1).db")
+const mysql = require('mysql');
+const connection = require('./mysqlConnection'); // Importa la conexión MySQL
 
+// Obtiene todas las fotos
 function getPhotos(req, res) {
-    db.all('SELECT * FROM Fotos', [], (err, rows) => {
+    connection.query('SELECT * FROM Fotos', (err, results) => {
         if (err) {
             res.status(500).send('Error al obtener las fotos');
             return;
         }
-        res.json(rows);
+        res.json(results);
     });
 }
 
-
+// Obtiene una foto por ID
 function getPhotosById(req, res) {
     const { id } = req.params;
-    db.get('SELECT * FROM Fotos WHERE id_foto = ?', [id], (err, row) => {
+    connection.query('SELECT * FROM Fotos WHERE id_foto = ?', [id], (err, results) => {
         if (err) {
-            res.status(500).send('Error al obtener fotos ');
+            res.status(500).send('Error al obtener la foto');
             return;
         }
-        res.json(row);
+        res.json(results[0]);
     });
 }
 
-
+// Inserta una nueva foto
 function insertPhoto(req, res) {
     const { tipo_foto, descrip_foto, precio_foto, contact_foto, tel_foto } = req.body;
-    db.run(`INSERT INTO Fotos (tipo_foto, descrip_foto, precio_foto, contact_foto, tel_foto) VALUES (?, ?, ?, ?, ?)`,
-        [tipo_foto, descrip_foto, precio_foto, contact_foto, tel_foto], function(err) {
+    connection.query('INSERT INTO Fotos (tipo_foto, descrip_foto, precio_foto, contact_foto, tel_foto) VALUES (?, ?, ?, ?, ?)',
+        [tipo_foto, descrip_foto, precio_foto, contact_foto, tel_foto], function(err, results) {
             if (err) {
                 res.status(500).send('Error al insertar la foto');
                 return;
             }
-            res.send({ id: this.lastID, message: 'Foto insertada exitosamente' });
+            res.send({ id: results.insertId, message: 'Foto insertada exitosamente' });
         });
 }
 
+// Elimina una foto por ID
 function deletePhoto(req, res) {
     const { id } = req.params;
-    db.run(`DELETE FROM Fotos WHERE id_foto = ?`, [id], function(err) {
+    connection.query('DELETE FROM Fotos WHERE id_foto = ?', [id], function(err) {
         if (err) {
             res.status(500).send('Error al eliminar la foto');
             return;
@@ -47,10 +49,11 @@ function deletePhoto(req, res) {
     });
 }
 
+// Actualiza una foto por ID
 function updatePhoto(req, res) {
     const { id } = req.params;
     const { tipo_foto, descrip_foto, precio_foto, contact_foto, tel_foto } = req.body;
-    db.run(`UPDATE Fotos SET tipo_foto = ?, descrip_foto = ?, precio_foto = ?, contact_foto = ?, tel_foto = ? WHERE id_foto = ?`,
+    connection.query('UPDATE Fotos SET tipo_foto = ?, descrip_foto = ?, precio_foto = ?, contact_foto = ?, tel_foto = ? WHERE id_foto = ?',
         [tipo_foto, descrip_foto, precio_foto, contact_foto, tel_foto, id], function(err) {
             if (err) {
                 res.status(500).send('Error al actualizar la foto');
@@ -60,4 +63,4 @@ function updatePhoto(req, res) {
         });
 }
 
-module.exports = { getPhotos, insertPhoto, deletePhoto, updatePhoto,getPhotosById };
+module.exports = { getPhotos, insertPhoto, deletePhoto, updatePhoto, getPhotosById };

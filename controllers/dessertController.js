@@ -1,8 +1,9 @@
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database("C:\\Users\\diego\\Documents\\ttaven\\EventosTaven (1).db")
+const mysql = require('mysql');
+const connection = require('./mysqlConnection'); // Importa la conexión MySQL
 
+// Obtiene todos los postres
 function getDesserts(req, res) {
-    db.all('SELECT * FROM Postres', [], (err, rows) => {
+    connection.query('SELECT * FROM Postres', (err, rows) => {
         if (err) {
             res.status(500).send('Error al obtener los postres');
             return;
@@ -11,35 +12,35 @@ function getDesserts(req, res) {
     });
 }
 
+// Obtiene un postre por ID
 function getDessertsById(req, res) {
     const { id } = req.params;
-    db.get('SELECT * FROM  Postres WHERE id_postre = ?', [id], (err, row) => {
+    connection.query('SELECT * FROM Postres WHERE id_postre = ?', [id], (err, rows) => {
         if (err) {
-            res.status(500).send('Error al obtener postres ');
+            res.status(500).send('Error al obtener el postre');
             return;
         }
-        res.json(row);
+        res.json(rows[0]);
     });
 }
 
-
-
-
+// Inserta un nuevo postre
 function insertDessert(req, res) {
     const { tipo_postre, descrip_postre, precio_postre, contact_postre, tel_postre } = req.body;
-    db.run(`INSERT INTO Postres (tipo_postre, descrip_postre, precio_postre, contact_postre, tel_postre) VALUES (?, ?, ?, ?, ?)`,
-        [tipo_postre, descrip_postre, precio_postre, contact_postre, tel_postre], function(err) {
+    connection.query('INSERT INTO Postres (tipo_postre, descrip_postre, precio_postre, contact_postre, tel_postre) VALUES (?, ?, ?, ?, ?)',
+        [tipo_postre, descrip_postre, precio_postre, contact_postre, tel_postre], function(err, results) {
             if (err) {
                 res.status(500).send('Error al insertar el postre');
                 return;
             }
-            res.send({ id: this.lastID, message: 'Postre insertado exitosamente' });
+            res.send({ id: results.insertId, message: 'Postre insertado exitosamente' });
         });
 }
 
+// Elimina un postre por ID
 function deleteDessert(req, res) {
     const { id } = req.params;
-    db.run(`DELETE FROM Postres WHERE id_postre = ?`, [id], function(err) {
+    connection.query('DELETE FROM Postres WHERE id_postre = ?', [id], function(err) {
         if (err) {
             res.status(500).send('Error al eliminar el postre');
             return;
@@ -48,10 +49,11 @@ function deleteDessert(req, res) {
     });
 }
 
+// Actualiza un postre por ID
 function updateDessert(req, res) {
     const { id } = req.params;
     const { tipo_postre, descrip_postre, precio_postre, contact_postre, tel_postre } = req.body;
-    db.run(`UPDATE Postres SET tipo_postre = ?, descrip_postre = ?, precio_postre = ?, contact_postre = ?, tel_postre = ? WHERE id_postre = ?`,
+    connection.query('UPDATE Postres SET tipo_postre = ?, descrip_postre = ?, precio_postre = ?, contact_postre = ?, tel_postre = ? WHERE id_postre = ?',
         [tipo_postre, descrip_postre, precio_postre, contact_postre, tel_postre, id], function(err) {
             if (err) {
                 res.status(500).send('Error al actualizar el postre');

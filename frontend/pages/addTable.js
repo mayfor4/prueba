@@ -49,7 +49,7 @@ function createAddTablePage() {
             body: formData
         });
 
-        loadTablesPage(); // Reload the page after adding
+        //loadTablesPage(); // Reload the page after adding
     });
 
     form.appendChild(submitButton);

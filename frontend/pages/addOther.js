@@ -49,7 +49,7 @@ function createAddOtherPage() {
             body: formData
         });
 
-        loadOthersPage(); // Reload the page after adding
+        //loadOthersPage(); // Reload the page after adding
     });
 
     form.appendChild(submitButton);

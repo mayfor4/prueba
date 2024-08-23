@@ -45,7 +45,7 @@ function createAddEventPage() {
             }
         });
 
-        loadEventsPage(); // Reload the page after adding
+        //loadEventsPage(); // Reload the page after adding
     });
 
     form.appendChild(submitButton);

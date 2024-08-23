@@ -54,7 +54,7 @@ function createEditOtherPage(other) {
             body: formData
         });
 
-        loadOthersPage(); // Reload the page after updating
+       // loadOthersPage(); // Reload the page after updating
     });
 
     form.appendChild(submitButton);

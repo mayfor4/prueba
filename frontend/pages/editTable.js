@@ -54,7 +54,7 @@ function createEditTablePage(table) {
             body: formData
         });
 
-        loadTablesPage(); // Reload the page after updating
+       // loadTablesPage(); // Reload the page after updating
     });
 
     form.appendChild(submitButton);

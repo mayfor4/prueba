@@ -50,7 +50,7 @@ function createEditPhotoPage(photo) {
             body: JSON.stringify(updatedPhoto)
         });
 
-        loadPhotosPage();
+       // loadPhotosPage();
     });
 
     form.appendChild(submitButton);

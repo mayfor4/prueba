@@ -8,11 +8,11 @@ function createEditDecorationPage(decoration) {
     h1.textContent = 'Modificar Decoración';
 
     const form = document.createElement('form');
-    form.classList.add('edit-decoration-form');
+    form.classList.add('edit-decoration-form'); 
 
     const fields = [
         { label: 'Tipo', type: 'text', name: 'tipo_dec', value: decoration.tipo_dec },
-        { label: 'Descripción', type: 'text', name: 'decrip_dec', value: decoration.decrip_dec },
+        { label: 'Descripción', type: 'text', name: 'descrip_dec', value: decoration.descrip_dec },
         { label: 'Precio', type: 'number', name: 'precio_dec', value: decoration.precio_dec },
         { label: 'Contacto', type: 'text', name: 'contact_dec', value: decoration.contact_dec },
         { label: 'Teléfono', type: 'text', name: 'tel_dec', value: decoration.tel_dec },
@@ -41,7 +41,7 @@ function createEditDecorationPage(decoration) {
 
         const formData = new FormData();
         formData.append('tipo_dec', form.tipo_dec.value);
-        formData.append('decrip_dec', form.decrip_dec.value);
+        formData.append('descrip_dec', form.descrip_dec.value);
         formData.append('precio_dec', form.precio_dec.value);
         formData.append('contact_dec', form.contact_dec.value);
         formData.append('tel_dec', form.tel_dec.value);

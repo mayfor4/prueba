@@ -1,10 +1,11 @@
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database("C:\\Users\\diego\\Documents\\ttaven\\EventosTaven (1).db")
+const mysql = require('mysql');
 const fs = require('fs');
 const path = require('path');
+const connection = require('./mysqlConnection'); // Importa la conexión MySQL
 
+// Obtiene todos los manteles
 function getLinens(req, res) {
-    db.all('SELECT * FROM Manteleria', [], (err, rows) => {
+    connection.query('SELECT * FROM Manteleria', (err, rows) => {
         if (err) {
             res.status(500).send('Error al obtener los manteles');
             return;
@@ -16,53 +17,110 @@ function getLinens(req, res) {
     });
 }
 
-function  getLinensById(req, res) {
+// Obtiene un mantel por ID
+function getLinensById(req, res) {
     const { id } = req.params;
-    db.get('SELECT * FROM Manteleria WHERE id_mantel = ?', [id], (err, row) => {
+    connection.query('SELECT * FROM Manteleria WHERE id_mantel = ?', [id], (err, rows) => {
         if (err) {
-            res.status(500).send('Error al obtener manteleria ');
+            res.status(500).send('Error al obtener el mantel');
             return;
         }
-        res.json(row);
+        res.json(rows[0]);
     });
 }
 
+// Inserta un nuevo mantel
 function insertLinen(req, res) {
     const { tipo_mantel, precio_mantel, descrip_mantel, contact_mantel, tel_mantel } = req.body;
-    const img_mantel = req.file ? fs.readFileSync(req.file.path) : null;
-    db.run(`INSERT INTO Manteleria (tipo_mantel, precio_mantel, descrip_mantel, contact_mantel, tel_mantel, img_mantel) VALUES (?, ?, ?, ?, ?, ?)`,
-        [tipo_mantel, precio_mantel, descrip_mantel, contact_mantel, tel_mantel, req.file ? req.file.path : null], function(err) {
+    const img_mantel = req.file ? req.file.path : null;
+    connection.query(`INSERT INTO Manteleria (tipo_mantel, precio_mantel, descrip_mantel, contact_mantel, tel_mantel, img_mantel) VALUES (?, ?, ?, ?, ?, ?)`,
+        [tipo_mantel, precio_mantel, descrip_mantel, contact_mantel, tel_mantel, img_mantel], function(err, results) {
             if (err) {
                 res.status(500).send('Error al insertar el mantel');
                 return;
             }
-            res.send({ id: this.lastID, message: 'Mantel insertado exitosamente' });
+            res.send({ id: results.insertId, message: 'Mantel insertado exitosamente' });
         });
 }
 
+// Elimina un mantel por ID
 function deleteLinen(req, res) {
     const { id } = req.params;
-    db.run(`DELETE FROM Manteleria WHERE id_mantel = ?`, [id], function(err) {
+    
+    // Primero, obtén la ruta de la imagen que se eliminará
+    connection.query('SELECT img_mantel FROM Manteleria WHERE id_mantel = ?', [id], (err, rows) => {
         if (err) {
-            res.status(500).send('Error al eliminar el mantel');
+            res.status(500).send('Error al obtener la imagen del mantel');
             return;
         }
-        res.send({ message: 'Mantel eliminado exitosamente' });
+        
+        const img_mantel = rows[0]?.img_mantel;
+
+        // Elimina el registro de la base de datos
+        connection.query('DELETE FROM Manteleria WHERE id_mantel = ?', [id], function(err) {
+            if (err) {
+                res.status(500).send('Error al eliminar el mantel');
+                return;
+            }
+            
+            // Elimina el archivo de imagen del sistema de archivos si existe
+            if (img_mantel) {
+                fs.unlink(img_mantel, (err) => {
+                    if (err) {
+                        console.error('Error al eliminar el archivo de imagen:', err);
+                        res.status(500).send('Error al eliminar el archivo de imagen');
+                    } else {
+                        res.send({ message: 'Mantel eliminado exitosamente' });
+                    }
+                });
+            } else {
+                res.send({ message: 'Mantel eliminado exitosamente' });
+            }
+        });
     });
 }
 
+// Actualiza un mantel por ID
 function updateLinen(req, res) {
     const { id } = req.params;
     const { tipo_mantel, precio_mantel, descrip_mantel, contact_mantel, tel_mantel } = req.body;
-    const img_mantel = req.file ? fs.readFileSync(req.file.path) : null;
-    db.run(`UPDATE Manteleria SET tipo_mantel = ?, precio_mantel = ?, descrip_mantel = ?, contact_mantel = ?, tel_mantel = ?, img_mantel = ? WHERE id_mantel = ?`,
-        [tipo_mantel, precio_mantel, descrip_mantel, contact_mantel, tel_mantel, req.file ? req.file.path : null, id], function(err) {
-            if (err) {
-                res.status(500).send('Error al actualizar el mantel');
-                return;
-            }
-            res.send({ message: 'Mantel actualizado exitosamente' });
-        });
+    let newImagePath = req.file ? req.file.path : null;
+
+    // Primero, obtén la imagen actual
+    connection.query('SELECT img_mantel FROM Manteleria WHERE id_mantel = ?', [id], (err, rows) => {
+        if (err) {
+            res.status(500).send('Error al obtener la imagen del mantel');
+            return;
+        }
+        
+        const currentImagePath = rows[0]?.img_mantel;
+
+        // Si se proporciona una nueva imagen, elimina la imagen anterior
+        if (newImagePath && currentImagePath && currentImagePath !== newImagePath) {
+            fs.unlink(currentImagePath, (err) => {
+                if (err) {
+                    console.error('Error al eliminar el archivo de imagen:', err);
+                    res.status(500).send('Error al eliminar el archivo de imagen');
+                    return;
+                }
+            });
+        }
+        
+        // Si no se proporciona una nueva imagen, mantenemos la imagen actual
+        if (!newImagePath && currentImagePath) {
+            newImagePath = currentImagePath;
+        }
+
+        // Luego, actualiza el registro
+        connection.query('UPDATE Manteleria SET tipo_mantel = ?, precio_mantel = ?, descrip_mantel = ?, contact_mantel = ?, tel_mantel = ?, img_mantel = ? WHERE id_mantel = ?',
+            [tipo_mantel, precio_mantel, descrip_mantel, contact_mantel, tel_mantel, newImagePath, id], function(err) {
+                if (err) {
+                    res.status(500).send('Error al actualizar el mantel');
+                    return;
+                }
+                res.send({ message: 'Mantel actualizado exitosamente' });
+            });
+    });
 }
 
 module.exports = { getLinens, insertLinen, deleteLinen, updateLinen, getLinensById };

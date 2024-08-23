@@ -103,7 +103,7 @@ function createDecorationsPage() {
         decorations.forEach(decoration => {
             const row = document.createElement('tr');
 
-            const keys = ['id_dec', 'tipo_dec', 'decrip_dec', 'precio_dec', 'contact_dec', 'tel_dec'];
+            const keys = ['id_dec', 'tipo_dec', 'descrip_dec', 'precio_dec', 'contact_dec', 'tel_dec'];
             keys.forEach(key => {
                 const td = document.createElement('td');
                 td.textContent = decoration[key];

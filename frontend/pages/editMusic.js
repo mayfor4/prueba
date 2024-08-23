@@ -13,7 +13,8 @@ function createEditMusicPage(music) {
         { label: 'Nombre del Grupo', type: 'text', name: 'nom_grupo', value: music.nom_grupo },
         { label: 'Descripción del Grupo', type: 'text', name: 'descrip_music', value: music.descrip_music },
         { label: 'Precio', type: 'number', name: 'precio_music', value: music.precio_music },
-        { label: 'Telefono', type: 'number', name: 'tel_music', value: music.tel_music}
+        { label: 'Telefono', type: 'number', name: 'tel_music', value: music.tel_music},
+        { label: 'Contacto', type: 'text', name: 'contac_music', value: music.contac_music  },
     ];
 
     fields.forEach(field => {
@@ -40,6 +41,7 @@ function createEditMusicPage(music) {
             descrip_music: form.descrip_music.value,
             precio_music: form.precio_music.value,
             tel_music: form.tel_music.value,
+            contac_music: form.contac_music.value,
         };
 
         await fetch(`/api/musica/${music.id_music}`, {
@@ -61,10 +63,14 @@ function createEditMusicPage(music) {
     return main;
 }
 
-function loadEditMusicPage(music) {
+
+async function loadEditMusicPage(id) {
+    const response = await fetch(`/api/musica/${id}`);
+    const music = await response.json();
     const container = document.getElementById('page-content');
     container.innerHTML = '';
     container.appendChild(createEditMusicPage(music));
 }
+
 
 export default loadEditMusicPage;

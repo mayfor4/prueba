@@ -13,7 +13,8 @@ function createAddMusicPage() {
         { label: 'Nombre del Grupo', type: 'text', name: 'nom_grupo' },
         { label: 'Descripción del Grupo', type: 'text', name: 'descrip_music' },
         { label: 'Precio', type: 'number', name: 'precio_music' },
-        { label: 'Telefono', type: 'number', name: 'tel_music'}
+        { label: 'Telefono', type: 'number', name: 'tel_music'},
+        { label: 'Contacto', type: 'text', name: 'contac_music' },
     ];
 
     fields.forEach(field => {
@@ -39,6 +40,7 @@ function createAddMusicPage() {
             descrip_music: form.descrip_music.value,
             precio_music: form.precio_music.value,
             tel_music: form.tel_music.value,
+            contac_music: form.contac_music.value,
         };
 
         await fetch('/api/musica', {

@@ -50,7 +50,7 @@ function createEditCocktailPage(cocktail) {
             body: JSON.stringify(updatedCocktail)
         });
 
-        loadCocktailsPage();
+       // loadCocktailsPage();
     });
 
     form.appendChild(submitButton);

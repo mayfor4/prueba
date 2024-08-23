@@ -131,7 +131,7 @@ function createGlassesPage() {
             deleteButton.textContent = 'Eliminar';
             deleteButton.addEventListener('click', async () => {
                 await deleteGlass(item.id_vaso);
-                loadGlassesPage(); // Reload the page after deleting
+                //loadGlassesPage(); // Reload the page after deleting
             });
 
             actionsTd.appendChild(editButton);

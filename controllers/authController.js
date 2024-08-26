@@ -1,8 +1,12 @@
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+//console.log("Username:", process.env.ADMIN_USERNAME);
+//console.log("Hashed Password:", process.env.HASHED_PASSWORD);
+
 const users = [
-  { username: 'Eventostaven ', password: '$2a$10$045IgUTDWeRfD25KNg5F7uD82AaD0.RzgZ6DV4JRTS9fCym16YiNO' } // Reemplaza con el hash generado
+  { username: process.env.ADMIN_USERNAME, password: process.env.HASHED_PASSWORD }
 ];
 
 exports.login = (req, res) => {
@@ -17,15 +21,16 @@ exports.login = (req, res) => {
   bcrypt.compare(password, user.password, (err, isMatch) => {
     if (err) {
       console.error('Error comparing passwords:', err);
-      return res.status(500).json({ message: 'Server error' });
+      return res.status(500).json({ message: 'Error comparing passwords' });
     }
 
     if (!isMatch) {
-      console.log('Password does not match');
+      console.log('Invalid credentials');
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-/////////////////////token
-    const token = jwt.sign({ username: user.username }, 'your_jwt_secret', { expiresIn: '1h' });
+
+    // Genera y envía el token si las credenciales son correctas
+    const token = jwt.sign({ username: user.username }, 'secretKey', { expiresIn: '1h' });
     res.json({ token });
   });
 };

@@ -1,7 +1,11 @@
 // hashPassword.js
+// Cargar variables de entorno desde .env
+require('dotenv').config();
+
 const bcrypt = require('bcryptjs');
 
-const password = 'Eres2024'; // Pon aquí tu contraseña
+// Acceder a la contraseña desde la variable de entorno
+const password = process.env.ADMIN_PASSWORD;
 
 bcrypt.hash(password, 10, (err, hash) => {
   if (err) {
@@ -10,3 +14,8 @@ bcrypt.hash(password, 10, (err, hash) => {
     console.log('Hashed password:', hash);
   }
 });
+
+
+//usuario: Eventostaven
+
+//contraseña:

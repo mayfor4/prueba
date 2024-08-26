@@ -1,7 +1,7 @@
 // hashPassword.js
 const bcrypt = require('bcryptjs');
 
-const password = 'admin123'; // Pon aquí tu contraseña
+const password = 'Eres2024'; // Pon aquí tu contraseña
 
 bcrypt.hash(password, 10, (err, hash) => {
   if (err) {

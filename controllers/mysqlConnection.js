@@ -2,10 +2,10 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-    host: 'b47m8sppvcxjqxfge9oc-mysql.services.clever-cloud.com', // Dirección del servidor MySQL
-    user: 'ud0fzfgmyhvj51ut', // Usuario de la base de datos
-    password: 'pGYfwQzSaERsyNLNah84', // Contraseña de la base de datos
-    database: 'b47m8sppvcxjqxfge9oc', // Nombre de la base de datos
+    host: 'bvtec2tprhcndq5n0sjr-mysql.services.clever-cloud.com', // Dirección del servidor MySQL
+    user: 'u7ubtfwhu9mdkbee', // Usuario de la base de datos
+    password: '8kXOfaM4WKHXuXcAcQnY', // Contraseña de la base de datos
+    database: 'bvtec2tprhcndq5n0sjr', // Nombre de la base de datos
     port: 3306,
     
 });

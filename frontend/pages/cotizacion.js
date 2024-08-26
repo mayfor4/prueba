@@ -168,13 +168,52 @@ function createCotizacionPage() {
     main.appendChild(h1);
     main.appendChild(form);
 
+    // Div for displaying the message
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'mensaje';
+    messageDiv.style.display = 'none';
+    messageDiv.style.backgroundColor = 'white';
+    messageDiv.style.border = '1px solid black';
+    messageDiv.style.padding = '10px';
+    messageDiv.style.marginTop = '10px';
+    main.appendChild(messageDiv);
+
     return main;
 }
-
 function loadCotizacionPage() {
     const container = document.getElementById('page-content');
     container.innerHTML = '';
     container.appendChild(createCotizacionPage());
+
+    const form = document.getElementById('cotizacion-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita el envío estándar del formulario y la recarga de la página
+
+        const formData = new FormData(form);
+
+        fetch('/api/generar-pdf', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            mostrarMensaje('Solicitud enviada exitosamente');
+        })
+        .catch(error => {
+            mostrarMensaje('Error al enviar la solicitud');
+        });
+    });
+}
+
+function mostrarMensaje(mensaje) {
+    const mensajeDiv = document.getElementById('mensaje');
+    mensajeDiv.innerText = mensaje;
+    mensajeDiv.style.display = 'block';
+
+    // Ocultar el mensaje después de 3 segundos (3000 ms)
+    setTimeout(() => {
+        mensajeDiv.style.display = 'none';
+    }, 3000);
 }
 
 export default loadCotizacionPage;

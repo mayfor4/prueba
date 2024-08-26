@@ -265,16 +265,24 @@ nav ul {
   }
   
   /* Estilo para botones de agregar, eliminar y editar */
-  button {
-    background-color: #F2BD07; /* Color dorado */
-    color: #711D1D; /* Texto en color rojo-café */
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 5px;
-  }
+button {
+  background-color: #F2BD07; /* Color dorado */
+  color: #711D1D; /* Texto en color rojo-café */
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+  transition: transform 0.2s ease, background-color 0.2s ease; /* Transiciones suaves */
+}
+
+/* Animación al presionar el botón */
+button:active {
+  transform: scale(1.1); /* Agrandar un 10% */
+  background-color: #d8a005; /* Color dorado más oscuro */
+}
+
   
   button:hover {
     background-color: #d6a800; /* Color dorado más oscuro en hover */

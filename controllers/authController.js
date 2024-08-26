@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const users = [
-  { username: 'admin', password: '$2a$10$045IgUTDWeRfD25KNg5F7uD82AaD0.RzgZ6DV4JRTS9fCym16YiNO' } // Reemplaza con el hash generado
+  { username: 'Eventostaven ', password: '$2a$10$045IgUTDWeRfD25KNg5F7uD82AaD0.RzgZ6DV4JRTS9fCym16YiNO' } // Reemplaza con el hash generado
 ];
 
 exports.login = (req, res) => {

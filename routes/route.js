@@ -13,20 +13,20 @@ router.post('/api/generar-pdf', (req, res) => {
 
     generarPDF(data, (err, pdfPath) => {
         if (err) {
-            return res.status(500).send('Error al generar el PDF');
+            return res.status(500).json({ message: 'Error al generar el PDF' });
         }
 
-        sendMail('diegoorios97@gmail.com', 'Nueva Solicitud de Cotización', `Nueva solicitud de cotización de ${data.nomcliente}.`, [
+        sendMail('eventostaven@gmail.com', 'Nueva Solicitud de Cotización', `Nueva solicitud de cotización de ${data.nomcliente}.`, [
             {
                 filename: 'cotizacion.pdf',
                 path: pdfPath
             }
         ])
         .then(() => {
-            res.send({ message: 'Correo enviado exitosamente' });
+            res.json({ message: 'Correo enviado exitosamente' });
         })
         .catch(mailErr => {
-            res.status(500).send('Error al enviar el correo electrónico');
+            res.status(500).json({ message: 'Error al enviar el correo electrónico' });
         });
     });
 });

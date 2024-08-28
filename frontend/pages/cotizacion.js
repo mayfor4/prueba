@@ -187,13 +187,17 @@ function loadCotizacionPage() {
 
     const form = document.getElementById('cotizacion-form');
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita el envío estándar del formulario y la recarga de la página
-
+        event.preventDefault();
+    
         const formData = new FormData(form);
-
+        const data = Object.fromEntries(formData.entries());
+    
         fetch('/api/generar-pdf', {
             method: 'POST',
-            body: formData,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         })
         .then(response => response.json())
         .then(data => {
@@ -203,8 +207,7 @@ function loadCotizacionPage() {
             mostrarMensaje('Error al enviar la solicitud');
         });
     });
-}
-
+}   
 function mostrarMensaje(mensaje) {
     const mensajeDiv = document.getElementById('mensaje');
     mensajeDiv.innerText = mensaje;

@@ -16,7 +16,7 @@ router.post('/api/generar-pdf', (req, res) => {
             return res.status(500).json({ message: 'Error al generar el PDF' });
         }
 
-        sendMail('diegoorios97@gmail.com', 'Nueva Solicitud de Cotización', `Nueva solicitud de cotización de ${data.nomcliente}.`, [
+        sendMail('eventostaven@gmail.com', 'Nueva Solicitud de Cotización', `Nueva solicitud de cotización de ${data.nomcliente}.`, [
             {
                 filename: 'cotizacion.pdf',
                 path: pdfPath
